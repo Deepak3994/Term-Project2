@@ -1,0 +1,567 @@
+
+> Dataset <- read.table("/home/deepak/Documents/projects/Term-Project2/properdata.csv", header=TRUE, 
++   sep=",", na.strings="NA", dec=".", strip.white=TRUE)
+
+> local({
++   .Table <- xtabs(~Anemia+Class, data=Dataset)
++   cat("\nFrequency table:\n")
++   print(.Table)
++   .Test <- chisq.test(.Table, correct=FALSE)
++   print(.Test)
++ })
+
+Frequency table:
+      Class
+Anemia ckd notckd
+   no  190    150
+   yes  60      0
+
+	Pearson's Chi-squared test
+
+data:  .Table
+X-squared = 42.353, df = 1, p-value = 7.62e-11
+
+
+> local({
++   .Table <- xtabs(~Appetite+Class, data=Dataset)
++   cat("\nFrequency table:\n")
++   print(.Table)
++   .Test <- chisq.test(.Table, correct=FALSE)
++   print(.Test)
++ })
+
+Frequency table:
+        Class
+Appetite ckd notckd
+    good 168    150
+    poor  82      0
+
+	Pearson's Chi-squared test
+
+data:  .Table
+X-squared = 61.887, df = 1, p-value = 3.638e-15
+
+
+> local({
++   .Table <- xtabs(~Bacteria+Class, data=Dataset)
++   cat("\nFrequency table:\n")
++   print(.Table)
++   .Test <- chisq.test(.Table, correct=FALSE)
++   print(.Test)
++ })
+
+Frequency table:
+            Class
+Bacteria     ckd notckd
+  notpresent 228    150
+  present     22      0
+
+	Pearson's Chi-squared test
+
+data:  .Table
+X-squared = 13.968, df = 1, p-value = 0.0001859
+
+
+> local({
++   .Table <- xtabs(~Coronary.Artery.Disease+Class, data=Dataset)
++   cat("\nFrequency table:\n")
++   print(.Table)
++   .Test <- chisq.test(.Table, correct=FALSE)
++   print(.Test)
++ })
+
+Frequency table:
+                       Class
+Coronary.Artery.Disease ckd notckd
+                    no  216    150
+                    yes  34      0
+
+	Pearson's Chi-squared test
+
+data:  .Table
+X-squared = 22.295, df = 1, p-value = 2.338e-06
+
+
+> local({
++   .Table <- xtabs(~Diabetes.Mellitus+Class, data=Dataset)
++   cat("\nFrequency table:\n")
++   print(.Table)
++   .Test <- chisq.test(.Table, correct=FALSE)
++   print(.Test)
++ })
+
+Frequency table:
+                 Class
+Diabetes.Mellitus ckd notckd
+                    0      1
+              no  113    149
+              yes 137      0
+
+	Pearson's Chi-squared test
+
+data:  .Table
+X-squared = 125.81, df = 2, p-value < 2.2e-16
+
+
+> local({
++   .Table <- xtabs(~Hypertension+Class, data=Dataset)
++   cat("\nFrequency table:\n")
++   print(.Table)
++   .Test <- chisq.test(.Table, correct=FALSE)
++   print(.Test)
++ })
+
+Frequency table:
+            Class
+Hypertension ckd notckd
+         no  103    150
+         yes 147      0
+
+	Pearson's Chi-squared test
+
+data:  .Table
+X-squared = 139.45, df = 1, p-value < 2.2e-16
+
+
+> local({
++   .Table <- xtabs(~Pedal.Edema+Class, data=Dataset)
++   cat("\nFrequency table:\n")
++   print(.Table)
++   .Test <- chisq.test(.Table, correct=FALSE)
++   print(.Test)
++ })
+
+Frequency table:
+           Class
+Pedal.Edema ckd notckd
+        no  174    150
+        yes  76      0
+
+	Pearson's Chi-squared test
+
+data:  .Table
+X-squared = 56.296, df = 1, p-value = 6.233e-14
+
+
+> local({
++   .Table <- xtabs(~Pus.Cell+Class, data=Dataset)
++   cat("\nFrequency table:\n")
++   print(.Table)
++   .Test <- chisq.test(.Table, correct=FALSE)
++   print(.Test)
++ })
+
+Frequency table:
+          Class
+Pus.Cell   ckd notckd
+  abnormal  76      0
+  normal   174    150
+
+	Pearson's Chi-squared test
+
+data:  .Table
+X-squared = 56.296, df = 1, p-value = 6.233e-14
+
+
+> local({
++   .Table <- xtabs(~Pus.Cell.clumps+Class, data=Dataset)
++   cat("\nFrequency table:\n")
++   print(.Table)
++   .Test <- chisq.test(.Table, correct=FALSE)
++   print(.Test)
++ })
+
+Frequency table:
+               Class
+Pus.Cell.clumps ckd notckd
+     notpresent 208    150
+     present     42      0
+
+	Pearson's Chi-squared test
+
+data:  .Table
+X-squared = 28.156, df = 1, p-value = 1.119e-07
+
+
+> local({
++   .Table <- xtabs(~Red.Blood.Cells+Class, data=Dataset)
++   cat("\nFrequency table:\n")
++   print(.Table)
++   .Test <- chisq.test(.Table, correct=FALSE)
++   print(.Test)
++ })
+
+Frequency table:
+               Class
+Red.Blood.Cells ckd notckd
+       abnormal  47      0
+       normal   203    150
+
+	Pearson's Chi-squared test
+
+data:  .Table
+X-squared = 31.955, df = 1, p-value = 1.578e-08
+
+
+> numSummary(Dataset[,"Age"], statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,
++   .75,1))
+    mean       sd IQR 0% 25% 50% 75% 100%   n
+ 51.4725 16.97512  22  2  42  54  64   90 400
+
+> numSummary(Dataset[,"Albumin"], statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,
++   .25,.5,.75,1))
+  mean       sd IQR 0% 25% 50% 75% 100%   n
+ 1.015 1.272329   2  0   0   1   2    5 400
+
+> numSummary(Dataset[,"Blood.Glucose.Random"], statistics=c("mean", "sd", "IQR", "quantiles"), 
++   quantiles=c(0,.25,.5,.75,1))
+     mean       sd IQR 0% 25% 50% 75% 100%   n
+ 148.0325 74.78264  49 22 101 126 150  490 400
+
+> numSummary(Dataset[,"Blood.Pressure"], statistics=c("mean", "sd", "IQR", "quantiles"), 
++   quantiles=c(0,.25,.5,.75,1))
+   mean       sd IQR 0% 25% 50% 75% 100%   n
+ 76.455 13.47654  10 50  70  78  80  180 400
+
+> numSummary(Dataset[,"Blood.Urea"], statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,
++   .25,.5,.75,1))
+    mean       sd   IQR  0% 25% 50%   75% 100%   n
+ 57.4055 49.28597 34.75 1.5  27  44 61.75  391 400
+
+> numSummary(Dataset[,"Hemoglobin"], statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,
++   .25,.5,.75,1))
+   mean       sd  IQR  0%    25%  50%    75% 100%   n
+ 12.523 2.716186 3.75 3.1 10.875 12.5 14.625 17.8 400
+
+> numSummary(Dataset[,"Packed.Cell.Volume"], statistics=c("mean", "sd", "IQR", "quantiles"), 
++   quantiles=c(0,.25,.5,.75,1))
+    mean       sd IQR 0% 25% 50% 75% 100%   n
+ 38.7275 8.158102  10  9  34  38  44   54 400
+
+> numSummary(Dataset[,"Potassium"], statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,
++   .25,.5,.75,1))
+    mean       sd IQR  0% 25% 50% 75% 100%   n
+ 4.62125 2.819805 0.8 2.5   4 4.6 4.8   47 400
+
+> numSummary(Dataset[,"Red.Blood.Cell.Count"], statistics=c("mean", "sd", "IQR", "quantiles"), 
++   quantiles=c(0,.25,.5,.75,1))
+  mean        sd IQR  0% 25% 50% 75% 100%   n
+ 4.705 0.8403216 0.6 2.1 4.5 4.7 5.1    8 400
+
+> numSummary(Dataset[,"Serum.Creatinine"], statistics=c("mean", "sd", "IQR", "quantiles"), 
++   quantiles=c(0,.25,.5,.75,1))
+    mean      sd  IQR  0% 25% 50%  75% 100%   n
+ 3.07235 5.61749 2.17 0.4 0.9 1.4 3.07   76 400
+
+> numSummary(Dataset[,"Sodium"], statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,
++   .5,.75,1))
+     mean       sd IQR  0% 25% 50% 75% 100%   n
+ 137.4137 9.206864   6 4.5 135 137 141  163 400
+
+> numSummary(Dataset[,"Specific.Gravity"], statistics=c("mean", "sd", "IQR", "quantiles"), 
++   quantiles=c(0,.25,.5,.75,1))
+    mean          sd   IQR    0%   25%   50%  75%  100%   n
+ 1.01736 0.005370989 0.005 1.005 1.015 1.017 1.02 1.025 400
+
+> numSummary(Dataset[,"Sugar"], statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,
++   .5,.75,1))
+  mean       sd IQR 0% 25% 50% 75% 100%   n
+ 0.395 1.040038   0  0   0   0   0    5 400
+
+> numSummary(Dataset[,"White.Blood.Cell.Count"], statistics=c("mean", "sd", "IQR", "quantiles"), 
++   quantiles=c(0,.25,.5,.75,1))
+    mean      sd  IQR   0%  25%  50%  75%  100%   n
+ 8406.09 2523.22 2425 2200 6975 8406 9400 26400 400
+
+
+> with(Dataset, tapply(Age, Class, var, na.rm=TRUE))
+     ckd   notckd 
+293.0490 242.8267 
+
+> leveneTest(Age ~ Class, data=Dataset, center="mean")
+Levene's Test for Homogeneity of Variance (center = "mean")
+       Df F value Pr(>F)
+group   1   7e-04  0.979
+      398               
+
+> t.test(Age~Class, alternative='two.sided', conf.level=.95, var.equal=TRUE, data=Dataset)
+
+	Two Sample t-test
+
+data:  Age by Class
+t = 4.608, df = 398, p-value = 5.482e-06
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+  4.51888 11.24379
+sample estimates:
+   mean in group ckd mean in group notckd 
+            54.42800             46.54667 
+
+
+> with(Dataset, tapply(Blood.Pressure, Class, var, na.rm=TRUE))
+      ckd    notckd 
+223.26265  72.29781 
+
+> leveneTest(Blood.Pressure ~ Class, data=Dataset, center="mean")
+Levene's Test for Homogeneity of Variance (center = "mean")
+       Df F value    Pr(>F)    
+group   1  17.581 3.396e-05 ***
+      398                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+> t.test(Blood.Pressure~Class, alternative='two.sided', conf.level=.95, var.equal=FALSE, data=Dataset)
+
+	Welch Two Sample t-test
+
+data:  Blood.Pressure by Class
+t = 6.8792, df = 397.04, p-value = 2.352e-11
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+  5.761348 10.371986
+sample estimates:
+   mean in group ckd mean in group notckd 
+            79.48000             71.41333 
+
+
+> with(Dataset, tapply(Specific.Gravity, Class, var, na.rm=TRUE))
+         ckd       notckd 
+1.913043e-05 7.025727e-06 
+
+> leveneTest(Specific.Gravity ~ Class, data=Dataset, center="mean")
+Levene's Test for Homogeneity of Variance (center = "mean")
+       Df F value    Pr(>F)    
+group   1  18.529 2.109e-05 ***
+      398                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+> t.test(Specific.Gravity~Class, alternative='two.sided', conf.level=.95, var.equal=FALSE, data=Dataset)
+
+	Welch Two Sample t-test
+
+data:  Specific.Gravity by Class
+t = -22.2, df = 397.95, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.008487824 -0.007106843
+sample estimates:
+   mean in group ckd mean in group notckd 
+            1.014436             1.022233 
+
+
+> with(Dataset, tapply(Blood.Glucose.Random, Class, var, na.rm=TRUE))
+      ckd    notckd 
+7282.4302  393.4855 
+
+> leveneTest(Blood.Glucose.Random ~ Class, data=Dataset, center="mean")
+Levene's Test for Homogeneity of Variance (center = "mean")
+       Df F value    Pr(>F)    
+group   1  104.18 < 2.2e-16 ***
+      398                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+> t.test(Blood.Glucose.Random~Class, alternative='two.sided', conf.level=.95, var.equal=FALSE, data=Dataset)
+
+	Welch Two Sample t-test
+
+data:  Blood.Glucose.Random by Class
+t = 10.988, df = 291.91, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 50.82834 73.00900
+sample estimates:
+   mean in group ckd mean in group notckd 
+            171.2520             109.3333 
+
+
+> with(Dataset, tapply(Sodium, Class, var, na.rm=TRUE))
+      ckd    notckd 
+105.29546  23.15902 
+
+> leveneTest(Sodium ~ Class, data=Dataset, center="mean")
+Levene's Test for Homogeneity of Variance (center = "mean")
+       Df F value Pr(>F)
+group   1  0.4111 0.5218
+      398               
+
+> t.test(Sodium~Class, alternative='two.sided', conf.level=.95, var.equal=TRUE, data=Dataset)
+
+	Two Sample t-test
+
+data:  Sodium by Class
+t = -7.4635, df = 398, p-value = 5.354e-13
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -8.408394 -4.902273
+sample estimates:
+   mean in group ckd mean in group notckd 
+            134.9180             141.5733 
+
+
+> with(Dataset, tapply(Hemoglobin, Class, var, na.rm=TRUE))
+     ckd   notckd 
+4.412355 1.845731 
+
+> leveneTest(Hemoglobin ~ Class, data=Dataset, center="mean")
+Levene's Test for Homogeneity of Variance (center = "mean")
+       Df F value    Pr(>F)    
+group   1  21.635 4.495e-06 ***
+      398                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+> t.test(Hemoglobin~Class, alternative='two.sided', conf.level=.95, var.equal=FALSE, data=Dataset)
+
+	Welch Two Sample t-test
+
+data:  Hemoglobin by Class
+t = -23.645, df = 395.76, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -4.432524 -3.752009
+sample estimates:
+   mean in group ckd mean in group notckd 
+            10.98840             15.08067 
+
+
+> with(Dataset, tapply(Packed.Cell.Volume, Class, var, na.rm=TRUE))
+     ckd   notckd 
+43.02850 18.45016 
+
+> leveneTest(Packed.Cell.Volume ~ Class, data=Dataset, center="mean")
+Levene's Test for Homogeneity of Variance (center = "mean")
+       Df F value   Pr(>F)    
+group   1  15.191 0.000114 ***
+      398                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+> t.test(Packed.Cell.Volume~Class, alternative='two.sided', conf.level=.95, var.equal=FALSE, data=Dataset)
+
+	Welch Two Sample t-test
+
+data:  Packed.Cell.Volume by Class
+t = -21.753, df = 394.97, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -12.88535 -10.74932
+sample estimates:
+   mean in group ckd mean in group notckd 
+            34.29600             46.11333 
+
+
+> with(Dataset, tapply(White.Blood.Cell.Count, Class, var, na.rm=TRUE))
+    ckd  notckd 
+7828702 3247713 
+
+> leveneTest(White.Blood.Cell.Count ~ Class, data=Dataset, center="mean")
+Levene's Test for Homogeneity of Variance (center = "mean")
+       Df F value Pr(>F)
+group   1  1.5427  0.215
+      398               
+
+> t.test(White.Blood.Cell.Count~Class, alternative='two.sided', conf.level=.95, var.equal=TRUE, data=Dataset)
+
+	Two Sample t-test
+
+data:  White.Blood.Cell.Count by Class
+t = 4.1841, df = 398, p-value = 3.525e-05
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+  566.4569 1570.5351
+sample estimates:
+   mean in group ckd mean in group notckd 
+            8806.776             7738.280 
+
+
+> with(Dataset, tapply(Red.Blood.Cell.Count, Class, var, na.rm=TRUE))
+      ckd    notckd 
+0.5188512 0.3592881 
+
+> leveneTest(Red.Blood.Cell.Count ~ Class, data=Dataset, center="mean")
+Levene's Test for Homogeneity of Variance (center = "mean")
+       Df F value Pr(>F)
+group   1   1.212 0.2716
+      398               
+
+> t.test(Red.Blood.Cell.Count~Class, alternative='two.sided', conf.level=.95, var.equal=TRUE, data=Dataset)
+
+	Two Sample t-test
+
+data:  Red.Blood.Cell.Count by Class
+t = -14.686, df = 398, p-value < 2.2e-16
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -1.1653104 -0.8901563
+sample estimates:
+   mean in group ckd mean in group notckd 
+            4.319600             5.347333 
+
+
+> with(Dataset, tapply(Albumin, Class, median, na.rm=TRUE))
+   ckd notckd 
+     1      0 
+
+> wilcox.test(Albumin ~ Class, alternative="two.sided", data=Dataset)
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  Albumin by Class
+W = 33102, p-value < 2.2e-16
+alternative hypothesis: true location shift is not equal to 0
+
+
+> with(Dataset, tapply(Blood.Urea, Class, median, na.rm=TRUE))
+   ckd notckd 
+  55.0   33.5 
+
+> wilcox.test(Blood.Urea ~ Class, alternative="two.sided", data=Dataset)
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  Blood.Urea by Class
+W = 28192, p-value < 2.2e-16
+alternative hypothesis: true location shift is not equal to 0
+
+
+> with(Dataset, tapply(Serum.Creatinine, Class, median, na.rm=TRUE))
+   ckd notckd 
+  2.45   0.90 
+
+> wilcox.test(Serum.Creatinine ~ Class, alternative="two.sided", data=Dataset)
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  Serum.Creatinine by Class
+W = 34052, p-value < 2.2e-16
+alternative hypothesis: true location shift is not equal to 0
+
+
+> with(Dataset, tapply(Potassium, Class, median, na.rm=TRUE))
+   ckd notckd 
+   4.6    4.5 
+
+> wilcox.test(Potassium ~ Class, alternative="two.sided", data=Dataset)
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  Potassium by Class
+W = 19316, p-value = 0.6111
+alternative hypothesis: true location shift is not equal to 0
+
+
+> with(Dataset, tapply(Sugar, Class, median, na.rm=TRUE))
+   ckd notckd 
+     0      0 
+
+> wilcox.test(Sugar ~ Class, alternative="two.sided", data=Dataset)
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  Sugar by Class
+W = 23325, p-value = 6.38e-11
+alternative hypothesis: true location shift is not equal to 0
+
+
